@@ -26,6 +26,7 @@
     <artifactId>storm-clojure</artifactId>
 
     <properties>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
         <argLine />
     </properties>
 

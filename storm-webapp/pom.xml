@@ -30,6 +30,10 @@
     <name>Storm Webapp</name>
     <description>Webapp Servers for Apache Storm</description>
 
+    <properties>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
+
     <dependencies>
         <!-- storm-webapp is based on storm-core -->
         <dependency>

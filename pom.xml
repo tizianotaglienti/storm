@@ -286,6 +286,11 @@
         <license.thirdPartyFilename>DEPENDENCY-LICENSES</license.thirdPartyFilename>
         <license.outputDirectory>${project.basedir}</license.outputDirectory>
 
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <aggregate.report.dir>jacoco-reports/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
+
         <!-- dependency versions -->
         <clojure.version>1.10.0</clojure.version>
         <commons-compress.version>1.21</commons-compress.version>
@@ -366,6 +371,12 @@
 
         <!-- see intellij profile below... This fixes an annoyance with intellij -->
         <provided.scope>provided</provided.scope>
+
+        <sonar.projectKey>tizianotaglienti:${project.groupId}:${project.artifactId}</sonar.projectKey>
+        <sonar.links.homepage>https://github.com/tizianotaglienti/storm</sonar.links.homepage>
+        <sonar.links.ci>https://travis-ci.com/tizianotaglienti/storm</sonar.links.ci>
+        <sonar.links.scm>https://github.com/tizianotaglienti/storm</sonar.links.scm>
+        <sonar.links.issue>https://github.com/tizianotaglienti/storm/issues</sonar.links.issue>
     </properties>
 
     <modules>
@@ -383,6 +394,7 @@
         <module>storm-clojure</module>
         <module>storm-clojure-test</module>
         <module>storm-submit-tools</module>
+        <module>jacoco-reports</module>
     </modules>
 
     <dependencies>
@@ -390,6 +402,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -597,45 +616,6 @@
                         </configuration>
                     </plugin>
                 </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>all-tests</id>
-            <properties>
-                <!-- add perf tests back in -->
-                <java.unit.test.exclude.groups>nothing</java.unit.test.exclude.groups>
-                <clojure.test.set>*.*</clojure.test.set>
-                <skipITs>false</skipITs>
-            </properties>
-        </profile>
-        <profile>
-            <id>performance-tests</id>
-            <properties>
-                <!-- add perf tests back in -->
-                <java.unit.test.exclude.groups>nothing</java.unit.test.exclude.groups>
-            </properties>
-        </profile> 
-        <profile>
-            <id>integration-tests-only</id>
-            <properties>
-                <!--Java-->
-                <skipITs>false</skipITs>
-                <!--Clojure-->
-                <clojure.test.set>integration.*</clojure.test.set>
-                <clojure.test.declared.namespace.only>true</clojure.test.declared.namespace.only>
-            </properties>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-surefire-plugin</artifactId>
-                            <configuration>
-                                <skipTests>true</skipTests>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
             </build>
         </profile>
         <profile>
@@ -1197,6 +1177,16 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>3.7.0.1746</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.6</version>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${surefire.version}</version>
@@ -1254,38 +1244,6 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-pmd-plugin</artifactId>
-                    <version>3.16.0</version>
-                    <configuration>
-                        <targetJdk>1.8</targetJdk>
-                        <rulesets>
-                            <ruleset>storm/pmd-ruleset.xml</ruleset>
-                        </rulesets>
-                        <includeTests>true</includeTests>
-                        <printFailingErrors>true</printFailingErrors>
-                        <excludes>
-                            <exclude>org/apache/storm/generated/**</exclude>
-                            <exclude>org/apache/storm/sql/parser/impl/**</exclude>
-                        </excludes>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>pmd-check</id>
-                            <goals>
-                                <goal>check</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.apache.storm</groupId>
-                            <artifactId>storm-checkstyle</artifactId>
-                            <version>${project.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
@@ -1432,10 +1390,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+                <version>3.8.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

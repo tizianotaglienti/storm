@@ -24,6 +24,10 @@
 
     <artifactId>storm-submit-tools</artifactId>
 
+    <properties>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>commons-lang</groupId>

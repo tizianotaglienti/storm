@@ -35,6 +35,7 @@
         <worker-launcher.additional_cflags />
         <argLine />
         <conjure.version>2.1.3</conjure.version>
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
