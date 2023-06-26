@@ -276,7 +276,7 @@ blobstore.dir: The directory where all blobs are stored. For local file system i
 node and for HDFS file system it represents the hdfs file system path.
 
 supervisor.blobstore.class: This configuration is meant to set the client for  the supervisor  in order to talk to the blobstore. 
-For a local file system blobstore it is set to “org.apache.storm.blobstore.NimbusBlobStore” and for the HDFS blobstore it is set 
+For a local file system blobstore it is set to “org.apache.storm.NimbusBlobStore” and for the HDFS blobstore it is set 
 to “org.apache.storm.blobstore.HdfsClientBlobStore”.
 
 supervisor.blobstore.download.thread.count: This configuration spawns multiple threads for from the supervisor in order download 
@@ -296,7 +296,7 @@ cleanup anything over the cache target size. By default it is set to 300000 mill
 supervisor.localizer.update.blob.interval.secs: The distributed cache interval for checking for blobs to update. By
 default it is set to 30 seconds.
 
-nimbus.blobstore.class:  Sets the blobstore implementation nimbus uses. It is set to "org.apache.storm.blobstore.LocalFsBlobStore"
+nimbus.blobstore.class:  Sets the blobstore implementation nimbus uses. It is set to "org.apache.storm.LocalFsBlobStore"
 
 nimbus.blobstore.expiration.secs: During operations with the blobstore, via master, how long a connection is idle before nimbus 
 considers it dead and drops the session and any associated connections. The default is set to 600.
@@ -304,7 +304,7 @@ considers it dead and drops the session and any associated connections. The defa
 storm.blobstore.inputstream.buffer.size.bytes: The buffer size it uses for blobstore upload. It is set to 65536 bytes.
 
 client.blobstore.class: The blobstore implementation the storm client uses. The current implementation uses the default 
-config "org.apache.storm.blobstore.NimbusBlobStore".
+config "org.apache.storm.NimbusBlobStore".
 
 blobstore.replication.factor: It sets the replication for each blob within the blobstore. The “topology.min.replication.count” 
 ensures the minimum replication the topology specific blobs are set before launching the topology. You might want to set the 
@@ -526,10 +526,10 @@ import org.apache.storm.utils.Utils;
 ClientBlobStore and other blob-related classes can be imported by:
 
 ```java
-import org.apache.storm.blobstore.ClientBlobStore;
-import org.apache.storm.blobstore.AtomicOutputStream;
-import org.apache.storm.blobstore.InputStreamWithMeta;
-import org.apache.storm.blobstore.BlobStoreAclHandler;
+import org.apache.storm.ClientBlobStore;
+import org.apache.storm.AtomicOutputStream;
+import org.apache.storm.InputStreamWithMeta;
+import org.apache.storm.BlobStoreAclHandler;
 import org.apache.storm.generated.*;
 ```
 

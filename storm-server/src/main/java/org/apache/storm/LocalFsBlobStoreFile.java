@@ -10,7 +10,7 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.io.File;
 import java.io.FileInputStream;

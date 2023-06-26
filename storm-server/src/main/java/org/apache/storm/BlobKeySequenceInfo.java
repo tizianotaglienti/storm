@@ -10,13 +10,26 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
-import java.io.IOException;
-import java.io.InputStream;
+public class BlobKeySequenceInfo {
+    private String nimbusHostPort;
+    private String sequenceNumber;
 
-public abstract class InputStreamWithMeta extends InputStream {
-    public abstract long getVersion() throws IOException;
+    public String getNimbusHostPort() {
+        return nimbusHostPort;
+    }
 
-    public abstract long getFileLength() throws IOException;
+    public void setNimbusHostPort(String nimbusHostPort) {
+        this.nimbusHostPort = nimbusHostPort;
+    }
+
+    public String getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public void setSequenceNumber(String sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
+    }
+
 }

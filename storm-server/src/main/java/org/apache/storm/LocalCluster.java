@@ -33,7 +33,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.UnaryOperator;
-import org.apache.storm.blobstore.BlobStore;
+
 import org.apache.storm.cluster.ClusterStateContext;
 import org.apache.storm.cluster.ClusterUtils;
 import org.apache.storm.cluster.DaemonType;
@@ -93,7 +93,6 @@ import org.apache.storm.scheduler.ISupervisor;
 import org.apache.storm.security.auth.IGroupMappingServiceProvider;
 import org.apache.storm.security.auth.ThriftConnectionType;
 import org.apache.storm.security.auth.ThriftServer;
-import org.apache.storm.shade.org.apache.zookeeper.server.ServerConfig;
 import org.apache.storm.task.IBolt;
 import org.apache.storm.testing.InProcessZookeeper;
 import org.apache.storm.testing.NonRichBoltTracker;

@@ -10,7 +10,7 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Set;
 import javax.security.auth.Subject;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.storm.Config;
 import org.apache.storm.cluster.DaemonType;
 import org.apache.storm.generated.AuthorizationException;
 import org.apache.storm.generated.KeyAlreadyExistsException;

@@ -22,9 +22,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.storm.blobstore.AtomicOutputStream;
-import org.apache.storm.blobstore.ClientBlobStore;
-import org.apache.storm.blobstore.InputStreamWithMeta;
+import org.apache.storm.AtomicOutputStream;
+import org.apache.storm.ClientBlobStore;
+import org.apache.storm.InputStreamWithMeta;
 import org.apache.storm.generated.AuthorizationException;
 import org.apache.storm.generated.KeyAlreadyExistsException;
 import org.apache.storm.generated.KeyNotFoundException;

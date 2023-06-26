@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import org.apache.commons.io.FileUtils;
 import org.apache.storm.Config;
-import org.apache.storm.blobstore.ClientBlobStore;
+import org.apache.storm.ClientBlobStore;
 import org.apache.storm.daemon.supervisor.IAdvancedFSOps;
 import org.apache.storm.generated.AuthorizationException;
 import org.apache.storm.generated.KeyNotFoundException;

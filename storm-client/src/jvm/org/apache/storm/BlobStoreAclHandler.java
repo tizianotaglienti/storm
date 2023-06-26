@@ -10,7 +10,7 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.io.IOException;
 import java.security.Principal;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.security.auth.Subject;
-import org.apache.storm.Config;
+
 import org.apache.storm.generated.AccessControl;
 import org.apache.storm.generated.AccessControlType;
 import org.apache.storm.generated.AuthorizationException;

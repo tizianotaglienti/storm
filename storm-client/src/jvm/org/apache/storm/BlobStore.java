@@ -10,7 +10,7 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -21,7 +21,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import java.util.regex.Pattern;
 import javax.security.auth.Subject;
 import org.apache.storm.daemon.Shutdownable;
 import org.apache.storm.generated.AuthorizationException;

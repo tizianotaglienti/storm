@@ -17,7 +17,7 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.nio.channels.ClosedByInterruptException;
 import java.util.HashSet;

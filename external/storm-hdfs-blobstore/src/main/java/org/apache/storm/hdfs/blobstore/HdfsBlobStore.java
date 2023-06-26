@@ -18,9 +18,9 @@
 
 package org.apache.storm.hdfs.blobstore;
 
-import static org.apache.storm.blobstore.BlobStoreAclHandler.ADMIN;
-import static org.apache.storm.blobstore.BlobStoreAclHandler.READ;
-import static org.apache.storm.blobstore.BlobStoreAclHandler.WRITE;
+import static org.apache.storm.BlobStoreAclHandler.ADMIN;
+import static org.apache.storm.BlobStoreAclHandler.READ;
+import static org.apache.storm.BlobStoreAclHandler.WRITE;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -35,11 +35,11 @@ import javax.security.auth.Subject;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.storm.Config;
-import org.apache.storm.blobstore.AtomicOutputStream;
-import org.apache.storm.blobstore.BlobStore;
-import org.apache.storm.blobstore.BlobStoreAclHandler;
-import org.apache.storm.blobstore.BlobStoreFile;
-import org.apache.storm.blobstore.InputStreamWithMeta;
+import org.apache.storm.AtomicOutputStream;
+import org.apache.storm.BlobStore;
+import org.apache.storm.BlobStoreAclHandler;
+import org.apache.storm.BlobStoreFile;
+import org.apache.storm.InputStreamWithMeta;
 import org.apache.storm.generated.AuthorizationException;
 import org.apache.storm.generated.KeyAlreadyExistsException;
 import org.apache.storm.generated.KeyNotFoundException;

@@ -39,7 +39,7 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.permission.FsPermission;
 import org.apache.storm.Config;
-import org.apache.storm.blobstore.BlobStoreFile;
+import org.apache.storm.BlobStoreFile;
 import org.apache.storm.utils.ObjectReader;
 import org.apache.storm.utils.Time;
 import org.slf4j.Logger;

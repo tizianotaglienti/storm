@@ -12,15 +12,15 @@
 
 package org.apache.storm.daemon.nimbus;
 
-import static org.apache.storm.blobstore.BlobStoreAclHandler.READ;
+import static org.apache.storm.BlobStoreAclHandler.READ;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.security.auth.Subject;
-import org.apache.storm.blobstore.BlobStore;
-import org.apache.storm.blobstore.BlobStoreAclHandler;
+import org.apache.storm.BlobStore;
+import org.apache.storm.BlobStoreAclHandler;
 import org.apache.storm.generated.AccessControl;
 import org.apache.storm.generated.AuthorizationException;
 import org.apache.storm.generated.KeyAlreadyExistsException;

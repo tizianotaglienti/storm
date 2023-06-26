@@ -10,7 +10,7 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 public interface KeyFilter<R> {
     R filter(String key);

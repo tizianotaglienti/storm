@@ -10,17 +10,13 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 
-/**
- * An output stream where all of the data is committed on close, or can be canceled with cancel.
- */
-public abstract class AtomicOutputStream extends OutputStream {
-    /**
-     * Cancel all of the writes associated with this stream and close it.
-     */
-    public abstract void cancel() throws IOException;
+public abstract class InputStreamWithMeta extends InputStream {
+    public abstract long getVersion() throws IOException;
+
+    public abstract long getFileLength() throws IOException;
 }

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.util.Arrays;
 

@@ -10,7 +10,7 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -38,7 +38,7 @@ import org.apache.storm.utils.Utils;
  *
  * <p>For more detailed implementation
  *
- * @see org.apache.storm.blobstore.NimbusBlobStore
+ * @see NimbusBlobStore
  */
 public abstract class ClientBlobStore implements Shutdownable, AutoCloseable {
 

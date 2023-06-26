@@ -10,7 +10,7 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Timer;
 import java.util.TimerTask;
-import org.apache.storm.Config;
+
 import org.apache.storm.shade.com.google.common.annotations.VisibleForTesting;
 import org.apache.storm.utils.ObjectReader;
 import org.slf4j.Logger;

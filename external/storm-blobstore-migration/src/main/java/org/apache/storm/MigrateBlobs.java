@@ -16,18 +16,14 @@
  * limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
 import javax.security.auth.Subject;
-import javax.security.auth.login.LoginContext;
 
-import org.apache.storm.Config;
-import org.apache.storm.blobstore.BlobStore;
-import org.apache.storm.blobstore.LocalFsBlobStore;
 import org.apache.storm.generated.AuthorizationException;
 import org.apache.storm.generated.KeyAlreadyExistsException;
 import org.apache.storm.generated.KeyNotFoundException;

@@ -10,26 +10,17 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
-public class BlobKeySequenceInfo {
-    private String nimbusHostPort;
-    private String sequenceNumber;
+import java.io.IOException;
+import java.io.OutputStream;
 
-    public String getNimbusHostPort() {
-        return nimbusHostPort;
-    }
-
-    public void setNimbusHostPort(String nimbusHostPort) {
-        this.nimbusHostPort = nimbusHostPort;
-    }
-
-    public String getSequenceNumber() {
-        return sequenceNumber;
-    }
-
-    public void setSequenceNumber(String sequenceNumber) {
-        this.sequenceNumber = sequenceNumber;
-    }
-
+/**
+ * An output stream where all of the data is committed on close, or can be canceled with cancel.
+ */
+public abstract class AtomicOutputStream extends OutputStream {
+    /**
+     * Cancel all of the writes associated with this stream and close it.
+     */
+    public abstract void cancel() throws IOException;
 }

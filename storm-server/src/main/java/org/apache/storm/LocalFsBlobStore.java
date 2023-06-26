@@ -12,11 +12,8 @@
  * See the License for the specific language governing permissions and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
-import static org.apache.storm.blobstore.BlobStoreAclHandler.ADMIN;
-import static org.apache.storm.blobstore.BlobStoreAclHandler.READ;
-import static org.apache.storm.blobstore.BlobStoreAclHandler.WRITE;
 import static org.apache.storm.daemon.nimbus.Nimbus.NIMBUS_SUBJECT;
 import static org.apache.storm.daemon.nimbus.Nimbus.getVersionForKey;
 
@@ -34,8 +31,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.security.auth.Subject;
-import org.apache.storm.Config;
-import org.apache.storm.DaemonConfig;
+
 import org.apache.storm.cluster.ClusterStateContext;
 import org.apache.storm.cluster.ClusterUtils;
 import org.apache.storm.cluster.DaemonType;
@@ -82,7 +78,7 @@ public class LocalFsBlobStore extends BlobStore {
     private static final String DATA_PREFIX = "data_";
     private static final String META_PREFIX = "meta_";
     private static final String BLOBSTORE_SUBTREE = "/blobstore/";
-    private final int allPermissions = READ | WRITE | ADMIN;
+    private final int allPermissions = BlobStoreAclHandler.READ | BlobStoreAclHandler.WRITE | BlobStoreAclHandler.ADMIN;
     protected BlobStoreAclHandler aclHandler;
     private NimbusInfo nimbusInfo;
     private FileBlobStoreImpl fbs;
@@ -240,7 +236,7 @@ public class LocalFsBlobStore extends BlobStore {
     @Override
     public AtomicOutputStream updateBlob(String key, Subject who) throws AuthorizationException, KeyNotFoundException {
         validateKey(key);
-        checkPermission(key, who, WRITE);
+        checkPermission(key, who, BlobStoreAclHandler.WRITE);
         try {
             return new BlobStoreFileOutputStream(fbs.write(DATA_PREFIX + key, false));
         } catch (IOException e) {
@@ -310,10 +306,10 @@ public class LocalFsBlobStore extends BlobStore {
     public void setBlobMeta(String key, SettableBlobMeta meta, Subject who) throws AuthorizationException, KeyNotFoundException {
         validateKey(key);
         checkForBlobOrDownload(key);
-        aclHandler.normalizeSettableBlobMeta(key, meta, who, ADMIN);
+        aclHandler.normalizeSettableBlobMeta(key, meta, who, BlobStoreAclHandler.ADMIN);
         BlobStoreAclHandler.validateSettableACLs(key, meta.get_acl());
         SettableBlobMeta orig = getStoredBlobMeta(key);
-        aclHandler.hasPermissions(orig.get_acl(), ADMIN, who, key);
+        aclHandler.hasPermissions(orig.get_acl(), BlobStoreAclHandler.ADMIN, who, key);
         BlobStoreFileOutputStream outputStream = null;
         try {
             outputStream = new BlobStoreFileOutputStream(fbs.write(META_PREFIX + key, false));
@@ -337,12 +333,12 @@ public class LocalFsBlobStore extends BlobStore {
     public void deleteBlob(String key, Subject who) throws AuthorizationException, KeyNotFoundException {
         validateKey(key);
 
-        if (!aclHandler.checkForValidUsers(who, WRITE)) {
+        if (!aclHandler.checkForValidUsers(who, BlobStoreAclHandler.WRITE)) {
             // need to get ACL from meta
             LOG.debug("Retrieving meta to get ACL info... key: {} subject: {}", key, who);
 
             try {
-                checkPermission(key, who, WRITE);
+                checkPermission(key, who, BlobStoreAclHandler.WRITE);
             } catch (KeyNotFoundException e) {
                 LOG.error("Error while retrieving meta from ZK or local... key: {} subject: {}", key, who);
                 throw e;
@@ -389,7 +385,7 @@ public class LocalFsBlobStore extends BlobStore {
             checkForBlobUpdate(key);
         }
         SettableBlobMeta meta = getStoredBlobMeta(key);
-        aclHandler.hasPermissions(meta.get_acl(), READ, who, key);
+        aclHandler.hasPermissions(meta.get_acl(), BlobStoreAclHandler.READ, who, key);
         try {
             return new BlobStoreFileInputStream(fbs.read(DATA_PREFIX + key));
         } catch (IOException e) {
@@ -422,7 +418,7 @@ public class LocalFsBlobStore extends BlobStore {
         int replicationCount = 0;
         validateKey(key);
         SettableBlobMeta meta = getStoredBlobMeta(key);
-        aclHandler.hasPermissions(meta.get_acl(), READ, who, key);
+        aclHandler.hasPermissions(meta.get_acl(), BlobStoreAclHandler.READ, who, key);
         if (zkClient.checkExists().forPath(BLOBSTORE_SUBTREE + key) == null) {
             return 0;
         }

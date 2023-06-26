@@ -10,14 +10,14 @@
  * and limitations under the License.
  */
 
-package org.apache.storm.blobstore;
+package org.apache.storm;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import org.apache.storm.Config;
+
 import org.apache.storm.generated.AuthorizationException;
 import org.apache.storm.generated.BeginDownloadResult;
 import org.apache.storm.generated.KeyAlreadyExistsException;

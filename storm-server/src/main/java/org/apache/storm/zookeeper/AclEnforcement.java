@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.security.auth.Subject;
 import org.apache.storm.Config;
-import org.apache.storm.blobstore.BlobStore;
+import org.apache.storm.BlobStore;
 import org.apache.storm.callback.DefaultWatcherCallBack;
 import org.apache.storm.cluster.ClusterUtils;
 import org.apache.storm.cluster.DaemonType;

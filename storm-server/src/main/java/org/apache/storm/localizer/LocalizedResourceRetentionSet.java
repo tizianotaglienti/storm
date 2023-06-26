@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentMap;
-import org.apache.storm.blobstore.ClientBlobStore;
+import org.apache.storm.ClientBlobStore;
 import org.apache.storm.generated.AuthorizationException;
 import org.apache.storm.shade.com.google.common.annotations.VisibleForTesting;
 import org.slf4j.Logger;
