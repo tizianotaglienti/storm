@@ -26,7 +26,7 @@
     </parent>
 
     <artifactId>storm-hive-examples</artifactId>
-    
+
     <properties>
         <!-- Required downgrade by hive-hcatalog-core 2.3.4 -->
         <guava.version>16.0.1</guava.version>
@@ -43,6 +43,13 @@
             <groupId>org.apache.storm</groupId>
             <artifactId>storm-hive</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <!-- Aggiungi qui l'esclusione per la dipendenza problematica -->
+                <exclusion>
+                    <groupId>org.pentaho</groupId>
+                    <artifactId>pentaho-aggdesigner-algorithm</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -84,7 +91,7 @@
                         </goals>
                         <configuration>
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                 </transformer>
                             </transformers>

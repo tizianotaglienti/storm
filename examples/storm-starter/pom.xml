@@ -85,6 +85,12 @@
           For IntelliJ dev, intellij will load properly.
         -->
         <scope>${provided.scope}</scope>
+        <exclusions>
+            <exclusion>
+                <groupId>org.pentaho</groupId>
+                <artifactId>pentaho-aggdesigner-algorithm</artifactId>
+            </exclusion>
+        </exclusions>
     </dependency>
       <dependency>
           <groupId>org.apache.storm</groupId>
@@ -140,7 +146,7 @@
 
   <build>
     <sourceDirectory>src/jvm</sourceDirectory>
-    <testSourceDirectory>test/jvm</testSourceDirectory>
+    <testSourceDirectory>test</testSourceDirectory>
     <resources>
       <resource>
         <directory>${basedir}/multilang</directory>

@@ -398,6 +398,8 @@
     </modules>
 
     <dependencies>
+
+
         <!-- The JUnit dependency is required for submodules by the maven-surefire-plugin <excludedGroups> configuration -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -1048,6 +1050,13 @@
                 <version>${junit.jupiter.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+                <exclusions>
+                    <!-- Aggiungi qui l'esclusione per la dipendenza problematica -->
+                    <exclusion>
+                        <groupId>org.pentaho</groupId>
+                        <artifactId>pentaho-aggdesigner-algorithm</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.calcite</groupId>
