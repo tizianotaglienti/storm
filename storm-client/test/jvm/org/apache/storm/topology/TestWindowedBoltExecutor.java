@@ -1,6 +1,5 @@
 package org.apache.storm.topology;
 
-import java.io.File;
 import java.util.*;
 
 import org.apache.storm.Config;
