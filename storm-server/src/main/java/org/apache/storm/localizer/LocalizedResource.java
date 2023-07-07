@@ -93,7 +93,7 @@ public class LocalizedResource extends LocallyCachedBlob {
     private long size = -1;
 
     LocalizedResource(String key, Path localBaseDir, boolean shouldUncompress, IAdvancedFSOps fsOps, Map<String, Object> conf,
-                      String user, StormMetricsRegistry metricRegistry) {
+                      String user, StormMetricsRegistry metricRegistry) throws IOException {
         super(key + (shouldUncompress ? " archive" : " file"), key, metricRegistry);
         Path base = getLocalUserFileCacheDir(localBaseDir, user);
         this.baseDir = shouldUncompress ? getCacheDirForArchives(base) : getCacheDirForFiles(base);
@@ -220,7 +220,7 @@ public class LocalizedResource extends LocallyCachedBlob {
         return constructBlobWithVersionFileName(baseDir, getKey(), getLocalVersion());
     }
 
-    private void setSize() {
+    private void setSize() throws IOException {
         // we trust that the file exists
         Path withVersion = getFilePathWithVersion();
         size = ServerUtils.getDiskUsage(withVersion.toFile());

@@ -64,6 +64,11 @@
             <artifactId>log4j-over-slf4j</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-shaded-deps</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- Java EE packages. On JDK8 and below this is a part of java,
         but JDK9+ it is not there by default. -->
@@ -111,7 +116,6 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>

@@ -24,7 +24,7 @@ public class ZookeeperServerCnxnFactory {
     int port;
     NIOServerCnxnFactory factory;
 
-    public ZookeeperServerCnxnFactory(int port, int maxClientCnxns) {
+    public ZookeeperServerCnxnFactory(int port, int maxClientCnxns) throws IOException {
         //port range
         int max;
         if (port <= 0) {

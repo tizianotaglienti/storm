@@ -189,7 +189,7 @@ public class ServerUtils {
      * @param dir The input dir to get the disk space of this local dir
      * @return The total disk space of the input local directory
      */
-    public static long getDiskUsage(File dir) {
+    public static long getDiskUsage(File dir) throws IOException {
         long size = 0;
         if (!dir.exists()) {
             return 0;

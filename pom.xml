@@ -332,7 +332,6 @@
         <surefire.version>2.22.2</surefire.version>
         <awaitility.version>3.1.0</awaitility.version>
         <hdrhistogram.version>2.1.10</hdrhistogram.version>
-        <hamcrest.version>2.0.0.0</hamcrest.version>
         <cassandra.version>2.1.7</cassandra.version>
         <elasticsearch.version>5.2.2</elasticsearch.version>
         <calcite.version>1.14.0</calcite.version>
@@ -413,6 +412,12 @@
             <version>4.13</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -1027,12 +1032,6 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.hamcrest</groupId>
-                <artifactId>java-hamcrest</artifactId>
-                <version>${hamcrest.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.thrift</groupId>
                 <artifactId>libthrift</artifactId>
                 <version>${thrift.version}</version>
@@ -1185,19 +1184,29 @@
                 <artifactId>hadoop-archives</artifactId>
                 <version>${hadoop.version}</version>
             </dependency>
+            <dependency>
+                <groupId>javax.jms</groupId>
+                <artifactId>jms</artifactId>
+                <version>1.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <repositories>
         <repository>
+            <id>repository.jboss.org-public</id>
+            <name>JBoss.org Maven repository</name>
+            <url>https://repository.jboss.org/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
             <snapshots>
-                <enabled>false</enabled>
+                <updatePolicy>always</updatePolicy>
             </snapshots>
-            <id>central</id>
-            <url>https://repo1.maven.org/maven2/</url>
         </repository>
         <repository>
             <releases>
@@ -1207,9 +1216,10 @@
                 <enabled>true</enabled>
             </snapshots>
             <id>clojars</id>
-            <url>https://clojars.org/repo/</url>
+            <url>https://repo.clojars.org</url>
         </repository>
-    </repositories>
+
+ </repositories>
 
     <build>
         <pluginManagement>
