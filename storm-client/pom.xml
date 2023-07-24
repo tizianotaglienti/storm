@@ -265,7 +265,7 @@
                     <plugin>
                         <groupId>org.pitest</groupId>
                         <artifactId>pitest-maven</artifactId>
-                        <version>1.6.9</version>
+                        <version>1.14.2</version>
                         <configuration>
                             <targetClasses>
                                 <param>org.apache.storm.coordination.CoordinatedBolt*</param>
@@ -311,8 +311,10 @@
                         </executions>
                         <configuration>
                             <argLine>
-                                -javaagent:C:\Users\tagli\Downloads\jar_files(3)\ba-dua-agent-0.8.0.jar
-                                -Xbootclasspath/p:C:\Users\tagli\Downloads\jar_files(3)\ba-dua-agent-0.8.0.jar
+                                -javaagent:C:\Users\tagli\Desktop\software_testing\storm\storm-client\test\resources\ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar
+                                -Xbootclasspath/p:C:\Users\tagli\Desktop\software_testing\storm\storm-client\test\resources\ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar
+                                <!-- -javaagent:C:\Users\tagli\Downloads\jar_files(3)\ba-dua-agent-0.8.0.jar
+                                -Xbootclasspath/p:C:\Users\tagli\Downloads\jar_files(3)\ba-dua-agent-0.8.0.jar -->
                             </argLine>
                         </configuration>
                     </plugin>

@@ -1,4 +1,10 @@
 language: java
+
+before_install:
+  #- wget https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/nvm.sh -o ~/.nvm/nvm.sh
+  #- source ~/.nvm/nvm.sh
+  - nvm install --lts
+
 addons:
   sonarcloud:
     organization: "tizianotaglienti"
