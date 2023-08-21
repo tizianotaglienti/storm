@@ -311,10 +311,12 @@
                         </executions>
                         <configuration>
                             <argLine>
-                                -javaagent:C:\Users\tagli\Desktop\software_testing\storm\storm-client\test\resources\ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar
-                                -Xbootclasspath/p:C:\Users\tagli\Desktop\software_testing\storm\storm-client\test\resources\ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar
-                                <!-- -javaagent:C:\Users\tagli\Downloads\jar_files(3)\ba-dua-agent-0.8.0.jar
-                                -Xbootclasspath/p:C:\Users\tagli\Downloads\jar_files(3)\ba-dua-agent-0.8.0.jar -->
+                                -Xmx1024m
+                                -XX:MaxPermSize=256m
+                                <!-- -javaagent:C:\Users\tagli\Desktop\software_testing\storm\storm-client\test\resources\ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar
+                                -Xbootclasspath/p:C:\Users\tagli\Desktop\software_testing\storm\storm-client\test\resources\ba-dua-agent-rt-0.4.1-SNAPSHOT-all.jar-->
+                                -javaagent:"C:\Users\tagli\Downloads\jar_files(3)\ba-dua-agent-0.8.0.jar"
+                                -Xbootclasspath/p:"C:\Users\tagli\Downloads\jar_files(3)\ba-dua-agent-0.8.0.jar"
                             </argLine>
                         </configuration>
                     </plugin>
