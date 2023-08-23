@@ -373,7 +373,7 @@
         <sonar.links.ci>https://travis-ci.com/tizianotaglienti/storm</sonar.links.ci>
         <sonar.links.scm>https://github.com/tizianotaglienti/storm</sonar.links.scm>
         <sonar.links.issue>https://github.com/tizianotaglienti/storm/issues</sonar.links.issue>
-        <sonar.login>squ_0d1f17b8583359992d100f20c0f1d1f6e27eee81</sonar.login>
+        <sonar.login>squ_31aa8b01f54505b06a83f3140281f4f55218bd2f</sonar.login>
     </properties>
 
     <modules>
