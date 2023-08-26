@@ -395,6 +395,20 @@
     </modules>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.3.0</version>
+            <type>maven-plugin</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <version>3.21.0</version>
+            <type>maven-plugin</type>
+        </dependency>
         <!-- The JUnit dependency is required for submodules by the maven-surefire-plugin <excludedGroups> configuration -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -583,6 +597,7 @@
             <id>sign</id>
             <build>
                 <plugins>
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
