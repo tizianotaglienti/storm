@@ -42,9 +42,9 @@ class StormSqlImpl extends StormSql {
 
     @Override
     public void submit(
-        String name, Iterable<String> statements, Map<String, Object> topoConf, SubmitOptions opts,
-        StormSubmitter.ProgressListener progressListener, String asUser)
-        throws Exception {
+            String name, Iterable<String> statements, Map<String, Object> topoConf, SubmitOptions opts,
+            StormSubmitter.ProgressListener progressListener, String asUser)
+            throws Exception {
         for (String sql : statements) {
             StormParser parser = new StormParser(sql);
             SqlNode node = parser.impl().parseSqlStmtEof();
@@ -107,7 +107,7 @@ class StormSqlImpl extends StormSql {
         attr.put(Attributes.Name.MANIFEST_VERSION, "1.0");
         attr.put(Attributes.Name.MAIN_CLASS, processor.getClass().getCanonicalName());
         try (JarOutputStream out = new JarOutputStream(
-            new BufferedOutputStream(new FileOutputStream(jar.toFile())), manifest)) {
+                new BufferedOutputStream(new FileOutputStream(jar.toFile())), manifest)) {
             List<CompilingClassLoader> classLoaders = processor.getClassLoaders();
             if (classLoaders != null && !classLoaders.isEmpty()) {
                 for (CompilingClassLoader classLoader : classLoaders) {

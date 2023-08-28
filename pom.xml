@@ -329,7 +329,8 @@
         <joda-time.version>2.3</joda-time.version>
         <thrift.version>0.13.0</thrift.version>
         <junit.jupiter.version>5.5.1</junit.jupiter.version>
-        <surefire.version>2.22.0</surefire.version>
+        <surefire.version>3.0.0-M5</surefire.version>
+        <failsafe.version>2.21.0</failsafe.version>
         <awaitility.version>3.1.0</awaitility.version>
         <hdrhistogram.version>2.1.10</hdrhistogram.version>
         <cassandra.version>2.1.7</cassandra.version>
@@ -395,7 +396,6 @@
     </modules>
 
     <dependencies>
-
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-checkstyle-plugin</artifactId>
@@ -1053,12 +1053,7 @@
                 <version>${thrift.version}</version>
                 <scope>compile</scope>
             </dependency>
-            <dependency>
-                <groupId>org.apache.thrift</groupId>
-                <artifactId>libthrift</artifactId>
-                <version>${thrift.version}</version>
-                <scope>test</scope>
-            </dependency>
+
 
             <!-- used by examples/storm-starter -->
             <dependency>
@@ -1267,7 +1262,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${surefire.version}</version>
+                    <version>${failsafe.version}</version>
                     <configuration>
                         <redirectTestOutputToFile>true</redirectTestOutputToFile>
                         <includes>
