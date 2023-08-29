@@ -76,9 +76,12 @@
                     <groupId>org.apache.yetus</groupId>
                     <artifactId>audience-annotations</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-annotations</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -191,7 +194,6 @@
                             <include>org.apache.httpcomponents:httpclient</include>
                             <include>org.apache.thrift:*</include>
                             <include>org.apache.zookeeper:zookeeper</include>
-                            <include>org.apache.zookeeper:zookeeper-jute</include>
                             <include>org.jctools:jctools-core</include>
                             <include>org.jgrapht:jgrapht-core</include>
                             <include>org.yaml:snakeyaml</include>
@@ -313,7 +315,6 @@
                 -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.3.0</version>
                 <executions>
                     <execution>
                         <id>workaround-makeItVisibleOnIntellij</id>
@@ -339,5 +340,4 @@
     <properties>
         <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
-
 </project>
