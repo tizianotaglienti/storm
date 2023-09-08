@@ -291,7 +291,7 @@
         <aggregate.report.dir>jacoco-reports/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>
 
         <!-- dependency versions -->
-        <clojure.version>1.5.0</clojure.version>
+        <clojure.version>1.10.0</clojure.version>
         <commons-compress.version>1.18</commons-compress.version>
         <commons-io.version>2.6</commons-io.version>
         <commons-lang.version>2.6</commons-lang.version>
@@ -330,7 +330,6 @@
         <thrift.version>0.13.0</thrift.version>
         <junit.jupiter.version>5.5.1</junit.jupiter.version>
         <surefire.version>3.0.0-M5</surefire.version>
-        <failsafe.version>2.21.0</failsafe.version>
         <awaitility.version>3.1.0</awaitility.version>
         <hdrhistogram.version>2.1.10</hdrhistogram.version>
         <cassandra.version>2.1.7</cassandra.version>
@@ -342,9 +341,7 @@
         <jedis.version>2.9.0</jedis.version>
         <activemq.version>5.15.8</activemq.version>
         <rocketmq.version>4.2.0</rocketmq.version>
-
         <jackson.version>2.10.0</jackson.version>
-
         <storm.kafka.client.version>0.11.0.3</storm.kafka.client.version>
 
         <!-- Java and clojure build lifecycle test properties are defined here to avoid having to create a default profile -->
@@ -1277,7 +1274,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${failsafe.version}</version>
+                    <version>${surefire.version}</version>
                     <configuration>
                         <redirectTestOutputToFile>true</redirectTestOutputToFile>
                         <includes>
