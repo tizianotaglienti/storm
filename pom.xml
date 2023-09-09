@@ -327,7 +327,7 @@
         <kryo.version>3.0.3</kryo.version>
         <servlet.version>3.1.0</servlet.version>
         <joda-time.version>2.3</joda-time.version>
-        <thrift.version>0.14.0</thrift.version>
+        <thrift.version>0.13.0</thrift.version>
         <junit.jupiter.version>5.5.1</junit.jupiter.version>
         <surefire.version>3.0.0-M5</surefire.version>
         <awaitility.version>3.1.0</awaitility.version>
@@ -1052,12 +1052,12 @@
                 <version>${thrift.version}</version>
                 <scope>compile</scope>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>org.apache.thrift</groupId>-->
-<!--                <artifactId>libthrift</artifactId>-->
-<!--                <version>${thrift.version}</version>-->
-<!--                <scope>test</scope>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>org.apache.thrift</groupId>
+                <artifactId>libthrift</artifactId>
+                <version>${thrift.version}</version>
+                <scope>test</scope>
+            </dependency>
 
 
             <!-- used by examples/storm-starter -->
