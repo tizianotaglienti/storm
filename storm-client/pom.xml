@@ -36,7 +36,11 @@
     </properties>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>${thrift.version}</version>
+        </dependency>
 
         <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.thrift/libthrift &ndash;&gt;-->
 <!--        <dependency>-->
