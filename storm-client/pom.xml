@@ -340,11 +340,11 @@
                         <configuration>
                             <targetClasses>
                                 <param>org.apache.storm.coordination.CoordinatedBolt*</param>
-                                <param>org.apache.storm.topology.WindowedBoltExecutor*</param>
+                                <param>org.apache.storm.bolt.JoinBolt*</param>
                             </targetClasses>
                             <targetTests>
                                 <param>org.apache.storm.coordination.TestCoordinatedBolt</param>
-                                <param>org.apache.storm.topology.TestWindowedBoltExecutor</param>
+                                <param>org.apache.storm.bolt.*</param>
                             </targetTests>
                             <avoidCallsTo>
                                 <avoidCallsTo>java.util.logging</avoidCallsTo>
@@ -532,12 +532,6 @@
             </build>
         </profile>
 
-
-
-
-
-
-
 <!--        <profile>-->
 <!--            <id>badua-coverage-offline</id>-->
 <!--            <activation>-->
@@ -664,75 +658,75 @@
 <!--            </build>-->
 <!--        </profile>-->
         <!-- Ba-Dua Profile -->
-        <profile>
-            <id>badua</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <ba-dua.version>0.4.0</ba-dua.version>
-                <argLine>-javaagent:target/dependency/ba-dua-agent-rt-${ba-dua.version}-all.jar -Doutput.file=${project.build.directory}/badua.ser</argLine>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>br.usp.each.saeg</groupId>
-                    <artifactId>ba-dua-cli</artifactId>
-                    <version>${ba-dua.version}</version>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <version>2.10</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>copy</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>br.usp.each.saeg</groupId>
-                                            <artifactId>ba-dua-agent-rt</artifactId>
-                                            <classifier>all</classifier>
-                                            <version>${ba-dua.version}</version>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>1.5.0</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>java</goal>
-                                </goals>
-                                <phase>verify</phase>
-                                <configuration>
-                                    <mainClass>br.usp.each.saeg.badua.cli.Report</mainClass>
-                                    <arguments>
-                                        <argument>-input</argument>
-                                        <argument>${project.build.directory}/badua.ser</argument>
-                                        <argument>-classes</argument>
-                                        <argument>${project.build.outputDirectory}</argument>
-                                        <argument>-show-classes</argument>
-                                        <argument>-show-methods</argument>
-                                        <argument>-xml</argument>
-                                        <argument>${project.build.directory}/badua.xml</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+<!--        <profile>-->
+<!--            <id>badua</id>-->
+<!--            <activation>-->
+<!--                <activeByDefault>false</activeByDefault>-->
+<!--            </activation>-->
+<!--            <properties>-->
+<!--                <ba-dua.version>0.4.0</ba-dua.version>-->
+<!--                <argLine>-javaagent:target/dependency/ba-dua-agent-rt-${ba-dua.version}-all.jar -Doutput.file=${project.build.directory}/badua.ser</argLine>-->
+<!--            </properties>-->
+<!--            <dependencies>-->
+<!--                <dependency>-->
+<!--                    <groupId>br.usp.each.saeg</groupId>-->
+<!--                    <artifactId>ba-dua-cli</artifactId>-->
+<!--                    <version>${ba-dua.version}</version>-->
+<!--                </dependency>-->
+<!--            </dependencies>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-dependency-plugin</artifactId>-->
+<!--                        <version>2.10</version>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <goals>-->
+<!--                                    <goal>copy</goal>-->
+<!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <artifactItems>-->
+<!--                                        <artifactItem>-->
+<!--                                            <groupId>br.usp.each.saeg</groupId>-->
+<!--                                            <artifactId>ba-dua-agent-rt</artifactId>-->
+<!--                                            <classifier>all</classifier>-->
+<!--                                            <version>${ba-dua.version}</version>-->
+<!--                                        </artifactItem>-->
+<!--                                    </artifactItems>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.codehaus.mojo</groupId>-->
+<!--                        <artifactId>exec-maven-plugin</artifactId>-->
+<!--                        <version>1.5.0</version>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <goals>-->
+<!--                                    <goal>java</goal>-->
+<!--                                </goals>-->
+<!--                                <phase>verify</phase>-->
+<!--                                <configuration>-->
+<!--                                    <mainClass>br.usp.each.saeg.badua.cli.Report</mainClass>-->
+<!--                                    <arguments>-->
+<!--                                        <argument>-input</argument>-->
+<!--                                        <argument>${project.build.directory}/badua.ser</argument>-->
+<!--                                        <argument>-classes</argument>-->
+<!--                                        <argument>${project.build.outputDirectory}</argument>-->
+<!--                                        <argument>-show-classes</argument>-->
+<!--                                        <argument>-show-methods</argument>-->
+<!--                                        <argument>-xml</argument>-->
+<!--                                        <argument>${project.build.directory}/badua.xml</argument>-->
+<!--                                    </arguments>-->
+<!--                                </configuration>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
     </profiles>
 </project>
 

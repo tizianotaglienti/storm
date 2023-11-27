@@ -13,6 +13,7 @@ import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.TupleImpl;
+import org.apache.storm.tuple.Values;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,8 +24,7 @@ import java.util.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @RunWith(Parameterized.class)
@@ -47,29 +47,39 @@ public class TestCoordinatedBolt {
         this.idStreamSpec = ti.getIdStreamSpec();
     }
 
-
     @Parameterized.Parameters
     public static Collection<TestInput> getTestParameters() {
         Collection<TestInput> inputs = new ArrayList<>();
 
-        List<Object> objectList = new ArrayList<>();
-        objectList.add("test");
-        objectList.add(20);
+        List<Object> objectList1 = new ArrayList<>();
+        objectList1.add("");
+        objectList1.add(30);
 
-        inputs.add(new TestInput("srcTest", "streamTest", 10, objectList, CoordinatedBolt.SourceArgs.single(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "streamTest")));
-        inputs.add(new TestInput("srcTest", "streamTest", 10, objectList, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "streamTest")));
-        inputs.add(new TestInput("srcTest", Constants.COORDINATED_STREAM_ID, 10, objectList, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", Constants.COORDINATED_STREAM_ID)));
-        inputs.add(new TestInput("srcTest", "streamTest", 10, objectList, CoordinatedBolt.SourceArgs.all(), null));
-        inputs.add(new TestInput("srcTest", Constants.COORDINATED_STREAM_ID, 10, objectList, CoordinatedBolt.SourceArgs.all(), null));
-        inputs.add(new TestInput("srcTest", "", 10, objectList, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "")));
-        inputs.add(new TestInput("", "streamTest", 10, objectList, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("", "streamTest")));
-        inputs.add(new TestInput("srcTest", "streamTest", 0, objectList, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "streamTest")));
-        inputs.add(new TestInput("srcTest", "streamTest", -1, objectList, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "streamTest")));
+        List<Object> objectList2 = new ArrayList<>();
+        objectList2.add("test");
+        objectList2.add(20);
+        
+        inputs.add(new TestInput("", "streamTest", -1, objectList1, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("", "streamTest")));
+        inputs.add(new TestInput("srcTest", "streamTest", 10, objectList1, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "streamTest")));
+        inputs.add(new TestInput("srcTest", "", -1, objectList1, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "")));
+        inputs.add(new TestInput("srcTest", Constants.COORDINATED_STREAM_ID, 0, objectList1, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", Constants.COORDINATED_STREAM_ID)));
+        inputs.add(new TestInput("", Constants.COORDINATED_STREAM_ID, 10, objectList1, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("", Constants.COORDINATED_STREAM_ID)));
 
+        inputs.add(new TestInput("", Constants.COORDINATED_STREAM_ID, 10, objectList2, CoordinatedBolt.SourceArgs.single(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("", Constants.COORDINATED_STREAM_ID)));
+        inputs.add(new TestInput(null, "streamTest", 0, objectList2, CoordinatedBolt.SourceArgs.single(), null));
+        inputs.add(new TestInput("srcTest", "", -1, objectList2, CoordinatedBolt.SourceArgs.single(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "")));
+        inputs.add(new TestInput(null, "", -1, objectList2, CoordinatedBolt.SourceArgs.all(), null));
+        inputs.add(new TestInput("srcTest", "streamTest", null, objectList2, CoordinatedBolt.SourceArgs.single(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "streamTest")));
+
+        inputs.add(new TestInput("srcTest", "streamTest", 0, objectList1, CoordinatedBolt.SourceArgs.single(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "streamTest")));
+        inputs.add(new TestInput("srcTest", "streamTest", -1, objectList1, CoordinatedBolt.SourceArgs.single(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "streamTest")));
+        inputs.add(new TestInput("srcTest", "streamTest", 10, objectList2, CoordinatedBolt.SourceArgs.all(), null));
+        inputs.add(new TestInput("srcTest", Constants.COORDINATED_STREAM_ID, 10, objectList2, CoordinatedBolt.SourceArgs.all(), null));
+        inputs.add(new TestInput("srcTest", "", null, objectList2, CoordinatedBolt.SourceArgs.all(), null));
 
         return inputs;
-
     }
+
 
     @Test
     public void testPrepareAndExecute() {
@@ -174,6 +184,7 @@ public class TestCoordinatedBolt {
         cb.cleanup();
 
     }
+
 
     private static class TestInput {
 
