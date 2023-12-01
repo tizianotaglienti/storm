@@ -58,7 +58,7 @@ public class TestCoordinatedBolt {
         List<Object> objectList2 = new ArrayList<>();
         objectList2.add("test");
         objectList2.add(20);
-        
+
         inputs.add(new TestInput("", "streamTest", -1, objectList1, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("", "streamTest")));
         inputs.add(new TestInput("srcTest", "streamTest", 10, objectList1, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "streamTest")));
         inputs.add(new TestInput("srcTest", "", -1, objectList1, CoordinatedBolt.SourceArgs.all(), CoordinatedBolt.IdStreamSpec.makeDetectSpec("srcTest", "")));
@@ -254,7 +254,6 @@ public class TestCoordinatedBolt {
             for (int i = 0; i < 1; i++) {
                 actualResults.add(input.getString(i));
             }
-
 
         }
 
